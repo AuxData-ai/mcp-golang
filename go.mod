@@ -2,7 +2,7 @@ module github.com/auxdata-ai/mcp-golang
 
 go 1.23
 
-replace github.com/metoro-io/mcp-golang => ./
+
 
 require (
 	github.com/davecgh/go-spew v1.1.1
