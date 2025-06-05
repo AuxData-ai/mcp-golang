@@ -7,6 +7,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	"strings"
 	"sync"
 
 	"github.com/metoro-io/mcp-golang/transport"
@@ -95,6 +96,20 @@ func (t *HTTPClientTransport) Send(ctx context.Context, message *transport.BaseJ
 
 	if len(body) > 0 {
 		// Try to unmarshal as a response first
+
+		// find start index of "{"
+		start := strings.Index(string(body), "{")
+
+		// find last index of "}"
+		end := strings.LastIndex(string(body), "}")
+
+		if start != -1 && end != -1 {
+			// Erstellung des neuen Strings
+			body = body[start : end+1]
+		} else {
+			return fmt.Errorf("no json found in response. response body: %s", body)
+		}
+
 		var response transport.BaseJSONRPCResponse
 		if err := json.Unmarshal(body, &response); err == nil {
 			t.mu.RLock()
