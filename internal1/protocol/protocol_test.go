@@ -7,7 +7,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/metoro-io/mcp-golang/internal/testingutils"
+	"github.com/metoro-io/mcp-golang/internal1/testingutils"
 	"github.com/metoro-io/mcp-golang/transport"
 )
 
