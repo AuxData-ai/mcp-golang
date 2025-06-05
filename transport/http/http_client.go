@@ -27,6 +27,7 @@ type HTTPClientTransport struct {
 	mu             sync.RWMutex
 	client         HTTPClient
 	headers        map[string]string
+	McpSessionId   string
 }
 
 // NewHTTPClientTransport creates a new HTTP client transport that connects to the specified endpoint
@@ -79,6 +80,10 @@ func (t *HTTPClientTransport) Send(ctx context.Context, message *transport.BaseJ
 		req.Header.Set(key, value)
 	}
 
+	if t.McpSessionId != "" {
+		req.Header.Set("Mcp-Session-Id", t.McpSessionId)
+	}
+
 	resp, err := t.client.Do(req)
 	if err != nil {
 		return fmt.Errorf("failed to send request: %w", err)
@@ -92,6 +97,10 @@ func (t *HTTPClientTransport) Send(ctx context.Context, message *transport.BaseJ
 
 	if resp.StatusCode != http.StatusOK {
 		return fmt.Errorf("server returned error: %s (status: %d)", string(body), resp.StatusCode)
+	}
+
+	if t.McpSessionId == "" {
+		t.McpSessionId = resp.Header.Get("Mcp-Session-Id")
 	}
 
 	if len(body) > 0 {
