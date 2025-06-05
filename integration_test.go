@@ -18,7 +18,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/metoro-io/mcp-golang/internal/protocol"
+	"github.com/metoro-io/mcp-golang/internal1/protocol"
 	"github.com/metoro-io/mcp-golang/transport"
 	mcphttp "github.com/metoro-io/mcp-golang/transport/http"
 	"github.com/stretchr/testify/assert"

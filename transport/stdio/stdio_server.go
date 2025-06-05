@@ -10,7 +10,7 @@ import (
 	"sync"
 
 	"github.com/metoro-io/mcp-golang/transport"
-	"github.com/metoro-io/mcp-golang/transport/stdio/internal/stdio"
+	"github.com/metoro-io/mcp-golang/transport/stdio/internal1/stdio"
 )
 
 // StdioServerTransport implements server-side transport for stdio communication

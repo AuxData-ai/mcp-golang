@@ -4,7 +4,7 @@ import (
 	"context"
 	"encoding/json"
 
-	"github.com/metoro-io/mcp-golang/internal/protocol"
+	"github.com/metoro-io/mcp-golang/internal1/protocol"
 	"github.com/metoro-io/mcp-golang/transport"
 	"github.com/pkg/errors"
 )
